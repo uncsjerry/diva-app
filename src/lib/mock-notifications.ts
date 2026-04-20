@@ -1,0 +1,93 @@
+import { Notification } from "./types";
+
+/**
+ * Mock notification data for POC.
+ * WHY: Real connectors (SugarCRM, Outlook, Basecamp, DIVA) live on EC2 3.17.94.209.
+ * This mock layer lets us build and validate the full UI before wiring live data.
+ */
+export const MOCK_NOTIFICATIONS: Notification[] = [
+  {
+    id: "n-001",
+    triggerType: "unanswered_email",
+    priority: "high",
+    title: "Ross Stores — no reply in 26 hours",
+    body: "Sarah Chen from Ross Stores sent a pricing question yesterday. No response from your team yet.",
+    createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+    source: "outlook",
+    status: "active",
+    link: "https://outlook.office.com",
+  },
+  {
+    id: "n-002",
+    triggerType: "overdue_crm_task",
+    priority: "high",
+    title: "Follow-up call with TJX overdue",
+    body: "Scheduled follow-up was due today at 10:00 AM. Mark complete or reschedule.",
+    createdAt: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
+    source: "sugarcrm",
+    status: "active",
+    link: "https://uncsdb.com",
+  },
+  {
+    id: "n-003",
+    triggerType: "diva_pricing_alert",
+    priority: "high",
+    title: "Price drop: SKU #44821 — Dove Body Wash 24oz",
+    body: "DIVA detected a 12% price decrease on a product in your active deal with Dollar Tree. Review margin impact.",
+    createdAt: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
+    source: "diva",
+    status: "active",
+  },
+  {
+    id: "n-004",
+    triggerType: "overdue_basecamp_task",
+    priority: "medium",
+    title: "Basecamp: Compliance audit docs due today",
+    body: 'To-do "Upload Q1 compliance audit documents" is due today. Assigned to you in the Operations project.',
+    createdAt: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
+    source: "basecamp",
+    status: "active",
+    link: "https://basecamp.com",
+  },
+  {
+    id: "n-005",
+    triggerType: "deal_no_activity",
+    priority: "medium",
+    title: "Deal stalled: Burlington — 3 days no activity",
+    body: "Your Burlington Coat Factory deal has had no CRM activity since April 17. Last action was a sample shipment note.",
+    createdAt: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
+    source: "sugarcrm",
+    status: "active",
+  },
+  {
+    id: "n-006",
+    triggerType: "unanswered_email",
+    priority: "medium",
+    title: "Five Below — sample tracking question",
+    body: "Buyer at Five Below asked for a tracking number 28 hours ago. Still unanswered.",
+    createdAt: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(),
+    source: "outlook",
+    status: "active",
+    link: "https://outlook.office.com",
+  },
+  {
+    id: "n-007",
+    triggerType: "overdue_crm_task",
+    priority: "low",
+    title: "Update contact info for Ollie's Bargain Outlet",
+    body: "CRM task to verify and update buyer contacts was due yesterday.",
+    createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+    source: "sugarcrm",
+    status: "active",
+  },
+  {
+    id: "n-008",
+    triggerType: "diva_pricing_alert",
+    priority: "medium",
+    title: "New DIVA match: Clorox Wipes — 3 potential buyers",
+    body: "DIVA identified 3 customers who bought this category in the last 12 months. Availables not yet sent.",
+    createdAt: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
+    source: "diva",
+    status: "active",
+  },
+];
