@@ -47,13 +47,13 @@ export default function NotificationCard({
 
   return (
     <div
-      className={`bg-card border border-card-border border-l-4 ${PRIORITY_STYLES[notification.priority]} rounded-lg p-4 transition-all hover:border-accent/40`}
+      className={`bg-card border border-card-border border-l-4 ${PRIORITY_STYLES[notification.priority]} rounded-xl p-4 shadow-sm transition-all hover:shadow-md hover:border-accent/30`}
     >
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-2 min-w-0">
+        <div className="flex items-center gap-2.5 min-w-0">
           <span
-            className="shrink-0 w-8 h-8 rounded-full bg-accent/15 flex items-center justify-center text-accent text-xs font-bold"
+            className="shrink-0 w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xs font-bold"
             title={icon}
           >
             {notification.source === "outlook"
@@ -65,7 +65,7 @@ export default function NotificationCard({
                   : "D"}
           </span>
           <div className="min-w-0">
-            <h3 className="text-sm font-semibold truncate">
+            <h3 className="text-sm font-semibold truncate text-foreground">
               {notification.title}
             </h3>
             <span className="text-xs text-muted">
@@ -75,12 +75,12 @@ export default function NotificationCard({
           </div>
         </div>
         <span
-          className={`shrink-0 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
+          className={`shrink-0 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
             notification.priority === "high"
-              ? "bg-danger/15 text-danger"
+              ? "bg-danger/10 text-danger"
               : notification.priority === "medium"
-                ? "bg-warning/15 text-warning"
-                : "bg-muted/15 text-muted"
+                ? "bg-warning/10 text-warning"
+                : "bg-muted/10 text-muted"
           }`}
         >
           {notification.priority}
@@ -88,7 +88,7 @@ export default function NotificationCard({
       </div>
 
       {/* Body */}
-      <p className="mt-2 text-sm text-foreground/70 leading-relaxed">
+      <p className="mt-2 text-sm text-foreground/60 leading-relaxed">
         {notification.body}
       </p>
 
@@ -107,13 +107,13 @@ export default function NotificationCard({
         <div className="ml-auto flex gap-2">
           <button
             onClick={() => onSnooze(notification.id)}
-            className="text-xs text-muted hover:text-foreground transition-colors px-2 py-1 rounded hover:bg-white/5"
+            className="text-xs text-muted hover:text-foreground transition-colors px-2.5 py-1 rounded-full hover:bg-accent/8 border border-card-border"
           >
             Snooze
           </button>
           <button
             onClick={() => onDismiss(notification.id)}
-            className="text-xs text-muted hover:text-foreground transition-colors px-2 py-1 rounded hover:bg-white/5"
+            className="text-xs text-muted hover:text-foreground transition-colors px-2.5 py-1 rounded-full hover:bg-accent/8 border border-card-border"
           >
             Dismiss
           </button>

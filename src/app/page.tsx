@@ -9,7 +9,7 @@ export default function Home() {
         <Dashboard />
       </main>
       <footer className="border-t border-card-border py-3 text-center">
-        <p className="text-[10px] text-muted uppercase tracking-widest">
+        <p className="text-[10px] text-accent/50 uppercase tracking-widest font-medium">
           DIVA &middot; UNCS Internal &middot; v0.1.0
         </p>
       </footer>

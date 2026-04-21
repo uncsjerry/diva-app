@@ -14,20 +14,20 @@ export default function StatsBar({ notifications }: StatsBarProps) {
 
   return (
     <div className="grid grid-cols-3 gap-3">
-      <div className="bg-card border border-card-border rounded-lg p-3 text-center">
+      <div className="bg-card border border-card-border rounded-xl p-3 text-center shadow-sm">
         <p className="text-2xl font-bold text-danger">{high}</p>
         <p className="text-[10px] uppercase tracking-wider text-muted mt-1">
           Urgent
         </p>
       </div>
-      <div className="bg-card border border-card-border rounded-lg p-3 text-center">
+      <div className="bg-card border border-card-border rounded-xl p-3 text-center shadow-sm">
         <p className="text-2xl font-bold text-warning">{medium}</p>
         <p className="text-[10px] uppercase tracking-wider text-muted mt-1">
           Needs Attn
         </p>
       </div>
-      <div className="bg-card border border-card-border rounded-lg p-3 text-center">
-        <p className="text-2xl font-bold text-muted">{low}</p>
+      <div className="bg-card border border-card-border rounded-xl p-3 text-center shadow-sm">
+        <p className="text-2xl font-bold text-accent">{low}</p>
         <p className="text-[10px] uppercase tracking-wider text-muted mt-1">
           Low
         </p>

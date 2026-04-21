@@ -25,8 +25,8 @@ export default function FilterTabs({ active, onChange }: FilterTabsProps) {
           onClick={() => onChange(f.value)}
           className={`shrink-0 text-xs font-medium px-3 py-1.5 rounded-full transition-colors ${
             active === f.value
-              ? "bg-accent text-white"
-              : "bg-card border border-card-border text-muted hover:text-foreground"
+              ? "bg-accent text-white shadow-sm"
+              : "bg-card border border-card-border text-muted hover:text-foreground hover:border-accent/40"
           }`}
         >
           {f.label}
