@@ -6,22 +6,30 @@ import NotificationCard from "./notification-card";
 import StatsBar from "./stats-bar";
 import FilterTabs from "./filter-tabs";
 
-export default function Dashboard() {
+interface DashboardProps {
+  viewAs: string; // "all" | email
+}
+
+export default function Dashboard({ viewAs }: DashboardProps) {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [filter, setFilter] = useState<TriggerType | "all">("all");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     fetchNotifications();
-  }, []);
+  }, [viewAs]);
 
   async function fetchNotifications() {
     try {
-      const res = await fetch("/api/notifications?status=active");
+      const url =
+        viewAs === "all"
+          ? "/api/notifications?status=active&email=all"
+          : `/api/notifications?status=active&email=${encodeURIComponent(viewAs)}`;
+      const res = await fetch(url);
       const data = await res.json();
-      setNotifications(data.notifications);
+      setNotifications(data.notifications ?? []);
     } catch {
-      // WHY: Silently handle fetch errors in POC — production will have proper error handling
       setNotifications([]);
     } finally {
       setLoading(false);
@@ -29,9 +37,7 @@ export default function Dashboard() {
   }
 
   async function handleAction(id: string, status: "dismissed" | "snoozed") {
-    // Optimistic update
     setNotifications((prev) => prev.filter((n) => n.id !== id));
-
     await fetch("/api/notifications", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -59,7 +65,7 @@ export default function Dashboard() {
 
       {filtered.length === 0 ? (
         <div className="text-center py-16">
-          <p className="text-muted text-sm">You&apos;re all caught up.</p>
+          <p className="text-muted text-sm">All caught up.</p>
         </div>
       ) : (
         <div className="space-y-3">

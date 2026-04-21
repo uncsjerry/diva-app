@@ -37,6 +37,8 @@ export interface Notification {
   source: "sugarcrm" | "outlook" | "basecamp" | "diva";
   /** Whether the user has dismissed or acted on it */
   status: "active" | "snoozed" | "dismissed";
+  /** Email of the employee this notification belongs to */
+  assignedTo: string;
   /** Optional deep-link back to the source record */
   link?: string;
 }
@@ -48,4 +50,5 @@ export interface UserSession {
   email: string;
   department: Department;
   role: string;
+  isAdmin: boolean;
 }
